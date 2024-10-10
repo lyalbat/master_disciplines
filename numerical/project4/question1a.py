@@ -1,25 +1,20 @@
+import math
 
-# Consider a differential equation
-# dy / dx =(x + y + xy)
-def func( x, y ):
-    return (x + y + x * y)
+def tangent( x, y ):
+    return 4*(math.exp(0.8*x))-(0.5*y)
      
-# Function for euler formula
-def euler( x0, y, h, x ):
-    temp = -0
-    while x0 < x:
-        temp = y
-        y = y + h * func(x0, y)
-        x0 = x0 + h
+def euler( x0, y0, h, x_stop ):
+    y = y0
+    x = x0
+    while x < x_stop:
+        y = y + h * tangent(x0, y)
+        x = x + h
+        print("x: " ,x, " y: ", "%.6f"% y)
  
-    print("Approximate solution at x = ", x, " is ", "%.6f"% y)
-     
-# Initial Values
+    
 x0 = 0
-y0 = 1
-h = 0.025
+y0 = 2
+h = 1
+x_stop = 4
  
-# Value of x at which we need approximation
-x = 0.1
- 
-euler(x0, y0, h, x)
+euler(x0, y0, h, x_stop)
